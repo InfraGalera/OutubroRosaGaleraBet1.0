@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Outubro Rosa | Agende seu Exame</title>
+<meta name="description" content="Campanha Outubro Rosa - Agende seu exame preventivo e cuide da sua saúde.">
+
+<style>
+  /* =========================================================
+     RESET & VARIÁVEIS GLOBAIS
+     ========================================================= */
+  :root {
+    --rosa-principal: #ec4899;
+    --rosa-escuro: #be185d;
+    --rosa-claro: #fce7f3;
+    --rosa-suave: #fdf2f8;
+    --texto-escuro: #3f1a2b;
+    --texto-claro: #6b7280;
+    --branco: #ffffff;
+    --sombra: 0 10px 30px rgba(236, 72, 153, 0.15);
+    --transicao: all 0.3s ease;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--texto-escuro);
+    background-color: var(--branco);
+    line-height: 1.6;
+  }
+
+  img {
+    max-width: 100%;
+    display: block;
+  }
+
+  /* =========================================================
+     SEÇÃO HERO / DESTAQUE (com imagem de fundo)
+     ========================================================= */
+  .hero {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px 20px;
+    /* Imagem de fundo ajustada */
+    background-image: url('OUTUBRO ROSA- Definitivo.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+  }
+
+  .hero-titulo {
+    font-size: clamp(1.8rem, 5vw, 3rem);
+    color: var(--rosa-escuro);
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+
+  .hero-subtitulo {
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
+    color: var(--texto-claro);
+    max-width: 600px;
+    margin: 0 auto 36px auto;
+  }
+
+  /* Botão principal "Agendar" */
+  .botao-agendar {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--rosa-principal), var(--rosa-escuro));
+    color: var(--branco);
+    font-size: 1.15rem;
+    font-weight: 600;
+    padding: 16px 48px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: var(--sombra);
+    transition: var(--transicao);
+    text-decoration: none;
+  }
+
+  .botao-agendar:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 15px 35px rgba(236, 72, 153, 0.3);
+  }
+
+  .botao-agendar:active {
+    transform: translateY(0) scale(0.98);
+  }
+
+  /* =========================================================
+     SEÇÃO INFORMATIVA
+     ========================================================= */
+  .info {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 70px 24px;
+    text-align: center;
+  }
+
+  .info h2 {
+    color: var(--rosa-escuro);
+    font-size: clamp(1.5rem, 4vw, 2.2rem);
+    margin-bottom: 16px;
+  }
+
+  .info p {
+    color: var(--texto-claro);
+    max-width: 650px;
+    margin: 0 auto;
+    font-size: 1.05rem;
+  }
+
+  /* =========================================================
+     SEÇÃO DO FORMULÁRIO E CALENDÁRIO
+     ========================================================= */
+  .agendamento {
+    background: linear-gradient(180deg, var(--rosa-suave) 0%, var(--rosa-claro) 100%);
+    padding: 70px 20px;
+  }
+
+  /* Layout Lado a Lado para Calendário + Formulário */
+  .agendamento-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .calendario-imagem {
+    max-width: 450px;
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+    box-shadow: var(--sombra);
+  }
+
+  .form-container {
+    flex: 1;
+    max-width: 560px;
+    background: var(--branco);
+    border-radius: 24px;
+    padding: 40px 32px;
+    box-shadow: var(--sombra);
+  }
+
+  .form-container h2 {
+    text-align: center;
+    color: var(--rosa-escuro);
+    font-size: clamp(1.4rem, 3.5vw, 1.9rem);
+    margin-bottom: 8px;
+  }
+
+  .form-container .form-subtitulo {
+    text-align: center;
+    color: var(--texto-claro);
+    margin-bottom: 30px;
+    font-size: 0.95rem;
+  }
+
+  .campo {
+    margin-bottom: 20px;
+  }
+
+  .campo label {
+    display: block;
+    font-weight: 600;
+    color: var(--texto-escuro);
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+  }
+
+  .campo input,
+  .campo select {
+    width: 100%;
+    padding: 14px 16px;
+    border: 2px solid #f3d4e4;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-family: inherit;
+    color: var(--texto-escuro);
+    background-color: var(--rosa-suave);
+    transition: var(--transicao);
+  }
+
+  .campo input:focus,
+  .campo select:focus {
+    outline: none;
+    border-color: var(--rosa-principal);
+    background-color: var(--branco);
+    box-shadow: 0 0 0 4px rgba(236, 72, 153, 0.12);
+  }
+
+  .linha-dupla {
+    display: flex;
+    gap: 16px;
+  }
+
+  .linha-dupla .campo {
+    flex: 1;
+  }
+
+  .botao-enviar {
+    width: 100%;
+    background: linear-gradient(135deg, var(--rosa-principal), var(--rosa-escuro));
+    color: var(--branco);
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding: 16px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: var(--transicao);
+    margin-top: 10px;
+  }
+
+  .botao-enviar:hover {
+    filter: brightness(1.08);
+    transform: translateY(-2px);
+  }
+
+  .botao-enviar:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  .mensagem-feedback {
+    margin-top: 20px;
+    padding: 14px 18px;
+    border-radius: 12px;
+    text-align: center;
+    font-weight: 600;
+    display: none;
+  }
+
+  .mensagem-feedback.sucesso {
+    display: block;
+    background-color: #dcfce7;
+    color: #166534;
+    border: 2px solid #86efac;
+  }
+
+  .mensagem-feedback.erro {
+    display: block;
+    background-color: #fee2e2;
+    color: #991b1b;
+    border: 2px solid #fca5a5;
+  }
+
+  /* =========================================================
+     RODAPÉ
+     ========================================================= */
+  footer {
+    text-align: center;
+    padding: 30px 20px;
+    color: var(--texto-claro);
+    font-size: 0.9rem;
+    background-color: var(--branco);
+  }
+
+  footer span {
+    color: var(--rosa-principal);
+    font-weight: 700;
+  }
+
+  /* =========================================================
+     RESPONSIVIDADE (CELULARES E TABLETS)
+     ========================================================= */
+  @media (max-width: 900px) {
+    .agendamento-wrapper {
+      flex-direction: column;
+    }
+
+    .calendario-imagem {
+      max-width: 100%;
+    }
+
+    .linha-dupla {
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .form-container {
+      padding: 30px 22px;
+      border-radius: 18px;
+      width: 100%;
+    }
+
+    .hero {
+      min-height: 90vh;
+      padding: 30px 16px;
+    }
+  }
+</style>
+</head>
+<body>
+
+  <!-- =========================================================
+       SEÇÃO HERO / DESTAQUE
+       ========================================================= -->
+  <section class="hero" id="topo">
+    <h1 class="hero-titulo">Outubro Rosa 🎗️</h1>
+    <p class="hero-subtitulo">
+      Cuidar de você é um ato de amor. Agende agora o seu exame preventivo
+      e faça parte dessa campanha pela vida.
+    </p>
+
+    <button class="botao-agendar" id="btnAgendar" type="button">
+      Agendar
+    </button>
+  </section>
+
+  <!-- =========================================================
+       SEÇÃO INFORMATIVA
+       ========================================================= -->
+  <section class="info">
+    <h2>Prevenção é o melhor caminho</h2>
+    <p>
+      O diagnóstico precoce salva vidas. Durante todo o mês de outubro,
+      estamos com horários especiais para facilitar o seu agendamento.
+      Preencha o formulário abaixo e escolha o melhor dia e período para você.
+    </p>
+  </section>
+
+  <!-- =========================================================
+       SEÇÃO DO FORMULÁRIO DE AGENDAMENTO + CALENDÁRIO
+       ========================================================= -->
+  <section class="agendamento" id="agendamento">
+    <div class="agendamento-wrapper">
+
+      <!-- Imagem do Calendário -->
+      <img 
+        src="CalendarioOutubro.png" 
+        alt="Calendário Outubro Rosa" 
+        class="calendario-imagem"
+      >
+
+      <!-- Formulário -->
+      <div class="form-container">
+        <h2>Agende seu horário</h2>
+        <p class="form-subtitulo">Preencha os dados abaixo para confirmar seu agendamento</p>
+
+        <form id="formAgendamento" action="https://api.web3forms.com/submit" method="POST">
+
+          <!-- Chave de acesso do Web3Forms -->
+          <input type="hidden" name="access_key" value="d2a9eeff-57a4-4ce4-9b08-d225373e8e69">
+
+          <!-- Assunto do e-mail recebido -->
+          <input type="hidden" name="subject" value="Novo Agendamento - Outubro Rosa">
+
+          <!-- Campo honeypot anti-spam -->
+          <input type="checkbox" name="botcheck" style="display:none">
+
+          <div class="campo">
+            <label for="nome">Nome completo</label>
+            <input type="text" id="nome" name="Nome Completo" placeholder="Digite seu nome completo" required>
+          </div>
+
+          <div class="campo">
+            <label for="email">E-mail</label>
+            <input type="email" id="email" name="E-mail" placeholder="seuemail@exemplo.com" required>
+          </div>
+
+          <div class="linha-dupla">
+            <div class="campo">
+              <label for="dia">Dia de Outubro</label>
+              <select id="dia" name="Dia de Outubro" required>
+                <option value="" disabled selected>Selecione o dia</option>
+                <option value="01/10 (Quarta-feira)">01/10 (Quarta-feira)</option>
+                <option value="02/10 (Quinta-feira)">02/10 (Quinta-feira)</option>
+                <option value="03/10 (Sexta-feira)">03/10 (Sexta-feira)</option>
+                <option value="06/10 (Segunda-feira)">06/10 (Segunda-feira)</option>
+                <option value="07/10 (Terça-feira)">07/10 (Terça-feira)</option>
+                <option value="08/10 (Quarta-feira)">08/10 (Quarta-feira)</option>
+                <option value="09/10 (Quinta-feira)">09/10 (Quinta-feira)</option>
+                <option value="10/10 (Sexta-feira)">10/10 (Sexta-feira)</option>
+                <option value="13/10 (Segunda-feira)">13/10 (Segunda-feira)</option>
+                <option value="14/10 (Terça-feira)">14/10 (Terça-feira)</option>
+                <option value="15/10 (Quarta-feira)">15/10 (Quarta-feira)</option>
+                <option value="16/10 (Quinta-feira)">16/10 (Quinta-feira)</option>
+                <option value="17/10 (Sexta-feira)">17/10 (Sexta-feira)</option>
+                <option value="20/10 (Segunda-feira)">20/10 (Segunda-feira)</option>
+                <option value="21/10 (Terça-feira)">21/10 (Terça-feira)</option>
+                <option value="22/10 (Quarta-feira)">22/10 (Quarta-feira)</option>
+                <option value="23/10 (Quinta-feira)">23/10 (Quinta-feira)</option>
+                <option value="24/10 (Sexta-feira)">24/10 (Sexta-feira)</option>
+                <option value="27/10 (Segunda-feira)">27/10 (Segunda-feira)</option>
+                <option value="28/10 (Terça-feira)">28/10 (Terça-feira)</option>
+                <option value="29/10 (Quarta-feira)">29/10 (Quarta-feira)</option>
+                <option value="30/10 (Quinta-feira)">30/10 (Quinta-feira)</option>
+                <option value="31/10 (Sexta-feira)">31/10 (Sexta-feira)</option>
+              </select>
+            </div>
+
+            <div class="campo">
+              <label for="periodo">Período</label>
+              <select id="periodo" name="Período" required>
+                <option value="" disabled selected>Selecione</option>
+                <option value="Manhã">Manhã</option>
+                <option value="Tarde">Tarde</option>
+              </select>
+            </div>
+          </div>
+
+          <button type="submit" class="botao-enviar" id="btnEnviar">
+            Confirmar Agendamento
+          </button>
+
+          <div class="mensagem-feedback" id="mensagemFeedback"></div>
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    Campanha <span>Outubro Rosa</span> — Juntos pela prevenção e pela vida.
+  </footer>
+
+  <script>
+    // Rolagem Suave
+    document.getElementById('btnAgendar').addEventListener('click', function () {
+      document.getElementById('agendamento').scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    });
+
+    // Envio do formulário via Web3Forms
+    const formulario = document.getElementById('formAgendamento');
+    const botaoEnviar = document.getElementById('btnEnviar');
+    const mensagemFeedback = document.getElementById('mensagemFeedback');
+
+    formulario.addEventListener('submit', async function (evento) {
+      evento.preventDefault();
+
+      botaoEnviar.disabled = true;
+      botaoEnviar.textContent = 'Enviando...';
+      mensagemFeedback.className = 'mensagem-feedback';
+      mensagemFeedback.textContent = '';
+
+      const dados = new FormData(formulario);
+
+      try {
+        const resposta = await fetch(formulario.action, {
+          method: 'POST',
+          body: dados,
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
+
+        const resultado = await resposta.json();
+
+        if (resposta.status === 200 && resultado.success) {
+          mensagemFeedback.textContent = '✅ Agendamento confirmado com sucesso! Em breve entraremos em contato.';
+          mensagemFeedback.className = 'mensagem-feedback sucesso';
+          formulario.reset();
+        } else {
+          throw new Error(resultado.message || 'Não foi possível enviar o formulário.');
+        }
+      } catch (erro) {
+        mensagemFeedback.textContent = '⚠️ Ocorreu um erro ao enviar. Tente novamente em instantes.';
+        mensagemFeedback.className = 'mensagem-feedback erro';
+        console.error('Erro no envio do formulário:', erro);
+      } finally {
+        botaoEnviar.disabled = false;
+        botaoEnviar.textContent = 'Confirmar Agendamento';
+      }
+    });
+  </script>
+
+</body>
+</html>
